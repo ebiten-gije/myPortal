@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="guestbook">
+	<!-- 목록 -->
+	<select id="selectAll" resultType="GuestbookVo">
+		Select no, name, password, content, reg_date "date" from guestbook order by reg_date desc
+	</select>
+	
+	<!-- 게시물 입력 (insert) -->
+	<insert id="insert" parameterType="GuestbookVo">
+		<!-- 시퀀스로부터 pk를 받아오는 쿼리 (메인 쿼리 이전 수행) (Oracle 전용) -->
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			Select seq_guestbook_no.nextval from dual
+		</selectKey>
+		INSERT into guestbook (no, name, password, content, reg_date)
+		values(#{no}, #{name}, #{password}, #{content}, sysdate)
+	</insert>
+	
+	<!-- 게시물 삭제 (delete) -->
+	<delete id="delete" parameterType="GuestbookVo">
+		delete from guestbook where no = #{no} and password = #{password}
+	</delete>
+</mapper>

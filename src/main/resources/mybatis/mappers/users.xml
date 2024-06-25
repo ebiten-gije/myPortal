@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="users">
+	<!-- insert (가입) -->
+	<insert id="insert" parameterType="UserVo">
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			Select seq_users_pk.nextval from dual
+		</selectKey>
+		insert into users (no, name, password, email, gender)
+		values(#{no}, #{name}, #{password}, #{email}, #{gender})
+	</insert>
+	
+	<!-- email 정보로 사용자 정보 select (중복 가입 막기) -->
+	<select id="selectUserByEmail" parameterType="string" resultType = "UserVo">
+		select no, name, email, gender from users where email = #{value}
+	</select>
+	
+	<!-- email과 비밀번호로 사용자 정보 select (로그인) -->
+	<select id="selectUserByEmailAndPassword" parameterType="map" resultType="UserVo">
+		select no, name, email, gender from users where email = #{email} and password = #{password}
+	</select>
+	
+</mapper>
