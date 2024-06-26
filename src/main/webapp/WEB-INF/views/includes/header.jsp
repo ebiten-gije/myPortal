@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <div id="header">
+	<c:if test="${not empty errorMsg }">
+		<h5>${errorMsg }</h5>
+	</c:if>
 	<h1>My Portal</h1>
 	<p>${authUser }</p>
 	<c:choose>

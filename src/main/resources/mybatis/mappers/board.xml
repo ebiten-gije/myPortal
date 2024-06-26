@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "board">
+	<!-- 갸시ㅏ물 작성 -->
+	<insert id = "insert" parameterType="BoardVo">
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			Select seq_board_pk.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+	INSERT INTO board (no, title, content, user_no) 
+	VALUES(#{no}, #{title}, #{content}, #{userNo})
+	]]>
+	</insert>
+
+	<!-- 목록 -->
+	<select id="selectAll" resultType ="BoardVo">
+		select b.no, b.title, b.content, b.hit, b.reg_date as regDate, b.user_no as userNo, u.name as userName
+		from board b, users u where b.user_no = u.no order by b.reg_date desc
+	</select>
+	
+	<!-- 게시붐ㄹ 읽기 -->
+	<select id = "getContent" parameterType ="long" resultType="BoardVo">
+		select b.no, b.title, b.content, b.hit, b.reg_date as regDate, b.user_no as userNo, u.name as userName
+		from board b, users u where b.user_no = u.no and b.no = #{value}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="increaseHitCount" parameterType="long">
+		update board set hit = hit + 1 where no = #{value} 
+	</update>
+	
+	<!-- 게시붐ㄹ 수정 -->
+	<update id="update" parameterType="BoardVo">
+		update board set title = #{title}, content = #{content} where no = #{no}
+	</update>
+	
+	<!-- 게시무ㅠㄴ 랏ㄱ제 -->
+	<delete id="deleteByUserNo" parameterType="map">
+		delete from board where no = #{no} and user_no = #{userNo}
+	</delete>
+</mapper>
