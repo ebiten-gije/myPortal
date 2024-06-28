@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "phonebook">
+	<select id="selectAll" resultType="PhonebookVo">
+		select id, name, hp, tel from phone_book
+	</select>
+
+	<insert id="insert" parameterType="PhonebookVo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			Select seq_phone_book.nextval from dual
+		</selectKey>
+		insert into phone_book (id, name, hp, tel)
+		 values (#{id}, #{name}, #{hp}, #{tel})
+	</insert>
+
+	<delete id="delete" parameterType = "long">
+		delete from phone_book where id = #{id}
+	</delete>
+	
+	<select id="search" parameterType = "String" resultType="PhonebookVo">
+		select id, name, hp, tel from Phone_book where name like '%' || #{keyword} || '%'
+	</select>
+	
+	<update id="update"></update>
+</mapper>

@@ -14,12 +14,11 @@
 <body>
   <div id="container">
   
-    <!-- header include -->
+	<!-- header include -->
     <c:import url="/WEB-INF/views/includes/header.jsp">
     	<c:param name="param1" value="param1"/>
     	<c:param name="param2" value="param2"/>
     </c:import>
-
 
 	<!-- navigation include -->
 	<c:import url="/WEB-INF/views/includes/navigation.jsp" />

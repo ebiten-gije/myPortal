@@ -1,0 +1,44 @@
+@charset "UTF-8"
+
+* { margin: 0px; padding: 0px; }
+
+#phonebook {
+	width: 640px;
+	border: 1px solid black;
+}
+
+#phonebook TH {
+	background-color: #CCC;
+}
+
+#phonebook TD {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.col_name {
+	width: 20%;
+}
+
+.col_phone {
+	width: 30%;
+}
+
+.col_toolbar {
+	width: 20%;
+}
+
+#add-form {
+	width:250px;
+	padding:10px;
+	border:1px solid #666;
+	border-radius: 10px;
+	margin:20px 10px;
+}
+
+#search-form {
+	margin-bottom: 10px;
+}
+
+#add-form input[type="submit"]	{ display:block; width:80px; margin:10px auto }
+label.block-label					{ display:block }

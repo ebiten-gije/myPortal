@@ -43,7 +43,12 @@
 		<tr>
 			<td colspan="2">
 				<a href="<c:url value="/board"/>">글목록</a>
-				<a href="<c:url value="/board/${boardVo.no }/modify"/>">글수정</a>
+				<c:if test="${not empty authUser}">
+					<c:if test="${authUser.no == vo.userNo }">
+						<a href="<c:url value="/board/${vo.no }/modify"/>">수정</a>
+						<a href="<c:url value="/board/${vo.no }/delete"/>">삭제</a>
+					</c:if> 
+				</c:if>
 			</td>
 		</tr>
 	</table>

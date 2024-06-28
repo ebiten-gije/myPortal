@@ -39,14 +39,14 @@ public class BoardController {
 	@GetMapping("/{no}")
 	public String view (@PathVariable ("no") Long no, Model model, HttpSession session,
 			RedirectAttributes redirectAttributes) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "로그인할 필요가 있는 것 같아");
-			return "redirect:/";
-		}
-		
+//		if (authUser == null) {
+//			//	홈화면으로 보내
+//			redirectAttributes.addFlashAttribute("errorMsg", "로그인할 필요가 있는 것 같아");
+//			return "redirect:/";
+//		}
+//		
 		System.out.println("no: " + no);
 		BoardVo boardVo = boardService.getContent(no);
 		System.out.println(boardVo);
@@ -57,13 +57,13 @@ public class BoardController {
 	
 	@GetMapping("/write")
 	public String writeform(HttpSession session, RedirectAttributes redirectAttributes) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
-			return "redirect:/";
-		}
+//		if (authUser == null) {
+//			//	홈화면으로 보내
+//			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
+//			return "redirect:/";
+//		}
 		
 		return "board/write";
 	}
@@ -72,10 +72,10 @@ public class BoardController {
 	public String write (@ModelAttribute BoardVo boardVo, HttpSession session, RedirectAttributes redirectAttributes) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			redirectAttributes.addFlashAttribute("errorMsg", "error");
-			return "redirect:/";
-		}
+//		if (authUser == null) {
+//			redirectAttributes.addFlashAttribute("errorMsg", "error");
+//			return "redirect:/";
+//		}
 		
 		boardVo.setUserNo(authUser.getNo());	//	작성자 PK
 		boardService.write(boardVo);
@@ -85,13 +85,13 @@ public class BoardController {
 	
 	@GetMapping("/{no}/modify")
 	public String modifyform(@PathVariable ("no") Long no, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			redirectAttributes.addFlashAttribute("errorMsg", "로그인 하지");
-			return "redirect:/";
-		}
-		
+//		if (authUser == null) {
+//			redirectAttributes.addFlashAttribute("errorMsg", "로그인 하지");
+//			return "redirect:/";
+//		}
+//		
 		BoardVo boardVo = boardService.getContent(no);
 		model.addAttribute("boardVo", boardVo);
 		return "board/modify";
@@ -99,12 +99,13 @@ public class BoardController {
 	
 	@PostMapping("/modify")
 	public String modify (@ModelAttribute BoardVo updatedVo, HttpSession session, RedirectAttributes redirectAttributes) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			redirectAttributes.addFlashAttribute("errorMsg", "");
-			return "redirect:/";
-		}
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+//		if (authUser == null) {
+//			redirectAttributes.addFlashAttribute("errorMsg", "");
+//			return "redirect:/";
+//		}
 		
 		//	기존 게시물 받기
 		BoardVo vo = boardService.getContent(updatedVo.getNo());
@@ -120,9 +121,9 @@ public class BoardController {
 	public String delete (@PathVariable ("no") Long no, HttpSession	session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			return "redirect:/";
-		}
+//		if (authUser == null) {
+//			return "redirect:/";
+//		}
 		
 		boardService.delete(no, authUser.getNo());
 		
