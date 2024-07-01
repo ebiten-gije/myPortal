@@ -12,7 +12,19 @@
 	rel="stylesheet" 
 	href="<c:url value="/css/phonebook.css"/> "/>
 </head>
+
 <body>
+<div id="container">
+  
+    <!-- header include -->
+    <c:import url="/WEB-INF/views/includes/header.jsp">
+    	<c:param name="param1" value="param1"/>
+    	<c:param name="param2" value="param2"/>
+    </c:import>
+
+	<!-- navigation include -->
+	<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+	
 
 	<h2>주소록 Web</h2>
 	<h3>목록 (검색어: ${param.keyword })</h3>
@@ -53,6 +65,9 @@
 	<p><a href="<c:url value="/phonebook/add"/>">새 주소 추가</a></p>
 	<p><a href="<c:url value="/"/>">홈으로</a></p>
 		
+	<!-- footer include -->
+	<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 		
+		</div>
 </body>
 </html>

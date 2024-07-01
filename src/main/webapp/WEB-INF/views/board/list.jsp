@@ -11,6 +11,7 @@
 	href="<c:url value="/css/board.css"/>"/>
 </head>
 <body>
+<div id = "container">
 	<!-- header include -->
     <c:import url="/WEB-INF/views/includes/header.jsp">
     	<c:param name="param1" value="param1"/>
@@ -58,5 +59,6 @@
 	
 	<!-- footer include -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp"/>
+	</div>
 </body>
 </html>

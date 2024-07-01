@@ -23,5 +23,5 @@
 		select id, name, hp, tel from Phone_book where name like '%' || #{keyword} || '%'
 	</select>
 	
-	<update id="update"></update>
+	<update id="update" ></update>
 </mapper>

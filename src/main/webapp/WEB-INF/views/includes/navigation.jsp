@@ -7,5 +7,6 @@
         <li><a href="<c:url value ="/guestbook"/>">방명록</a></li>
         <li><a href="<c:url value="/board"/>">게시판</a></li>
         <li><a href="<c:url value="/phonebook"/>">주소록</a></li>
+        <li><a href="<c:url value="/fileupload"/>">upload</a></li>
       </ul>
 	</div>

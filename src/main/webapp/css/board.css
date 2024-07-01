@@ -1,8 +1,18 @@
 @CHARSET "UTF-8";
 @import "mysite.css";
 
-#board { margin:20px auto;	width:550px; }
 
+
+#board { margin:20px auto;	width:550px; }
+#board form, 
+#board table	{ width:100% }
+
+#board table,	
+#board table td { border:1px solid #333 }
+#board table td { padding:5px }
+
+#board ul		{ width:100%; margin-top:20px }
+#board ul li	{ width:100%; margin-top:10px }
 
 #search_form {
 	width:100%;
