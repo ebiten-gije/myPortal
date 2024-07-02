@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.myportal.repositories.vo.BoardVo;
 import himedia.myportal.repositories.vo.UserVo;
 import himedia.myportal.services.BoardService;
+import himedia.myportal.services.FileUploadService;
 import jakarta.servlet.http.HttpSession;
 
 	//	사용자 기반 서비스
@@ -26,6 +29,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private FileUploadService fileUploadService;
 	
 	@RequestMapping({"", "/", "/list"})
 	public String list(Model model) {
@@ -69,14 +74,20 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write (@ModelAttribute BoardVo boardVo, HttpSession session, RedirectAttributes redirectAttributes) {
+	public String write (@ModelAttribute BoardVo boardVo, HttpSession session, RedirectAttributes redirectAttributes,
+			@RequestParam("file1") MultipartFile file1) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
 //		if (authUser == null) {
 //			redirectAttributes.addFlashAttribute("errorMsg", "error");
 //			return "redirect:/";
 //		}
-		
+		if (file1 != null && !file1.isEmpty()) {
+			String saveFilename = fileUploadService.store(file1);
+			System.out.println(saveFilename);
+			boardVo.setFileName(saveFilename);
+		}
+
 		boardVo.setUserNo(authUser.getNo());	//	작성자 PK
 		boardService.write(boardVo);
 		

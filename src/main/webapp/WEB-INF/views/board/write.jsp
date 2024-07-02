@@ -7,7 +7,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 </head>
 <body>
-	<form method="post" action="<c:url value="/board/write"/>">
+	<form method="post" action="<c:url value="/board/write"/>" enctype = "multipart/form-data">
 		<table border="1" width="640">
 			<tr>
 				<td colspan="2"><h3>게시판</h3></td>
@@ -25,6 +25,14 @@
 					<textarea id="content" name="content"></textarea>
 				</td>
 			</tr>
+			
+			<tr>
+			<td colspan="2">
+				<label>파일</label>
+				<input type = "file" name = "file1"  />
+			</td>
+			</tr>
+			
 			<tr>
 				<td colspan="2">
 					<a href="<c:url value="/board/"/>">취소</a>

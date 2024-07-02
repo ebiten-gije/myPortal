@@ -12,6 +12,8 @@ public class BoardVo {
 	private Long userNo;	//	users.no 참조
 	private String userName;	//	users.name
 	
+	private String fileName;
+	
 	public BoardVo() {
 		
 	}
@@ -22,6 +24,8 @@ public class BoardVo {
 		this.content = content;
 		this.userNo=userNo;
 	}
+	
+	
 
 	public BoardVo(Long no, String title, String content, Long hit, String regDate, Long userNo, String userName) {
 		super();
@@ -32,6 +36,18 @@ public class BoardVo {
 		this.regDate = regDate;
 		this.userNo = userNo;
 		this.userName = userName;
+	}
+
+	public BoardVo(Long no, String title, String content, Long hit, String regDate, Long userNo, String userName, String fileName) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.hit = hit;
+		this.regDate = regDate;
+		this.userNo = userNo;
+		this.userName = userName;
+		this.fileName = fileName;
 	}
 
 	public Long getNo() {
@@ -90,10 +106,18 @@ public class BoardVo {
 		this.userName = userName;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
-				+ regDate + ", userNo=" + userNo + ", userName=" + userName + "]";
+				+ regDate + ", userNo=" + userNo + ", userName=" + userName + ", fileName=" + fileName + "]";
 	}
 
 	

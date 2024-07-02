@@ -38,15 +38,18 @@
 				<div>
 					${boardVo.content }
 				</div>
+				<div>
+					<img src = "<c:url value="/upload-images/${boardVo.fileName }" />" />
+				</div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<a href="<c:url value="/board"/>">글목록</a>
 				<c:if test="${not empty authUser}">
-					<c:if test="${authUser.no == vo.userNo }">
-						<a href="<c:url value="/board/${vo.no }/modify"/>">수정</a>
-						<a href="<c:url value="/board/${vo.no }/delete"/>">삭제</a>
+					<c:if test="${authUser.no == boardVo.userNo }">
+						<a href="<c:url value="/board/${boardVo.no }/modify"/>">수정</a>
+						<a href="<c:url value="/board/${boardVo.no }/delete"/>">삭제</a>
 					</c:if> 
 				</c:if>
 			</td>

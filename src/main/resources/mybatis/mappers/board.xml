@@ -10,8 +10,8 @@
 		</selectKey>
 		
 		<![CDATA[
-	INSERT INTO board (no, title, content, user_no) 
-	VALUES(#{no}, #{title}, #{content}, #{userNo})
+	INSERT INTO board (no, title, content, user_no, file_name) 
+	VALUES(#{no}, #{title}, #{content}, #{userNo}, #{fileName})
 	]]>
 	</insert>
 
@@ -23,7 +23,8 @@
 	
 	<!-- 게시붐ㄹ 읽기 -->
 	<select id = "getContent" parameterType ="long" resultType="BoardVo">
-		select b.no, b.title, b.content, b.hit, b.reg_date as regDate, b.user_no as userNo, u.name as userName
+		select b.no, b.title, b.content, b.hit, b.reg_date as regDate, b.user_no as userNo, u.name as userName,
+		file_name as fileName
 		from board b, users u where b.user_no = u.no and b.no = #{value}
 	</select>
 	
